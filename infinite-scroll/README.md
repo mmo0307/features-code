@@ -1,6 +1,6 @@
 # Infinite Scroll
 
-**Install**
+*Install*
 > npm install --save react-infinite-scroll-component
 
 ```

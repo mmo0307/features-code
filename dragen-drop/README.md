@@ -23,7 +23,7 @@ const TEAM_DATA = [
 ------------
 
 Template component
-
+```
 function Table() {
     const [items, setItems] = useState(TEAM_DATA);
 
@@ -71,3 +71,4 @@ function Table() {
         </div>
     )
 }
+```

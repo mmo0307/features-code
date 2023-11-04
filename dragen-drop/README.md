@@ -1,16 +1,17 @@
-#Install
-npm i react-beautiful-dnd
+# Drap and Drop
 
-add import in file 
-import {DrapDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
+*Install*
+> npm i react-beautiful-dnd
 
-DragDropContext - enable drag and drop
-Droppable - area to move around items
-Draggable - item which we can move
+*add import in file*
+*import {DrapDropContext, Droppable, Draggable} from 'react-beautiful-dnd'*
 
+*DragDropContext - enable drag and drop\n*
+*Droppable - area to move around items\n*
+*Draggable - item which we can move\n*
 
 ------------
-Create some data items to move around:
+*Create some data items to move around:*
 
 const TEAM_DATA = [
     {id: 1, name: 'Dima'},

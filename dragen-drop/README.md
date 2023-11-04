@@ -7,7 +7,9 @@
 *import {DrapDropContext, Droppable, Draggable} from 'react-beautiful-dnd'*
 
 *DragDropContext - enable drag and drop*
+<br/>
 *Droppable - area to move around items*
+<br/>
 *Draggable - item which we can move*
 
 ------------

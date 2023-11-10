@@ -38,8 +38,21 @@ const OVERLAY_STYLES = {
   zIndex: 1000
 }
 
+//Custom Modal
 function Modal({ open, children, onClose }) {
-  if (!open) return null
+  if (!open) return null;
+
+  useEffect(() => {
+    function onKeyPress(e) {
+      if (e.key === "Escape") onClose()
+    }
+
+    document.addEventListener("keydown", onKeyPress)
+
+    return () => {
+      document.removeEventListener("keydown", onKeyPress)
+    }
+  }, [onClose])
 
   return ReactDom.createPortal(
     <>
@@ -52,6 +65,38 @@ function Modal({ open, children, onClose }) {
     document.getElementById('portal')
   )
 }
+
+//Dialog Modal
+function DialogModal({ isOpen, onClose, children }) {
+  const dialogRef = useRef(null)
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (dialog == null) return
+
+    if (isOpen) {
+      dialog.showModal()
+    } else {
+      dialog.close()
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (dialog == null) return
+
+    dialog.addEventListener("close", onClose)
+
+    return () => {
+      dialog.removeEventListener("close", onClose)
+    }
+  }, [onClose])
+
+  return createPortal(
+    <dialog ref={dialogRef}>{children}</dialog>,
+    document.getElementById('portal')
+  )
+}
+
 ```
 
 add Modal Component into other component

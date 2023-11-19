@@ -1,5 +1,17 @@
 # Modal Window
 
+# React Portal
+------------
+Portals are used in situations where it is necessary for child components to visually break away from the parent container. Typical examples of using portals:
+
+- Modal dialog boxes.
+- Tooltips.
+- Pop-up business cards.
+- Loaders.
+
+The portal is created using ReactDOM.createPortal(child, container). Here, ```child``` is a React element, fragment, or string, and ```container``` is the location or DOM node where the portal should be added.
+------------
+
 add *<div id="portal"></div>* to index.html
 
 ```

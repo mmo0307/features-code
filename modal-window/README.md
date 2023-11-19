@@ -8,7 +8,14 @@ Portals are used in situations where it is necessary for child components to vis
 - Loaders.
 
 The portal is created using ReactDOM.createPortal(child, container). Here, *child* is a React element, fragment, or string, and *container* is the location or DOM node where the portal should be added.
-------------
+
+Portals in React can come in handy when you need to render child components outside of the normal DOM hierarchy. This uses the React component tree hierarchy and does not break the default behavior defined for event propagation. This is how components such as modal, tooltips or messages, and many others are displayed.
+
+What to consider when using portals:
+- The event bubble will work as usual, propagating events to ancestors in the React tree, regardless of the portal node's location in the DOM.
+- React controls portal nodes and their lifecycle when rendering children using these portals.
+- Portals only affect the DOM structure for HTML and do not affect the React component tree.
+- HTML mount point is predefined: When using portals, you must define an HTML DOM element as the mount point of the portal component.
 
 add *<div id="portal"></div>* to index.html
 

@@ -17,7 +17,7 @@ What to consider when using portals:
 - Portals only affect the DOM structure for HTML and do not affect the React component tree.
 - HTML mount point is predefined: When using portals, you must define an HTML DOM element as the mount point of the portal component.
 
-## add *<div id="portal"></div>* to index.html
+## add <div id="portal"></div> to index.html
 
 ```
 <!DOCTYPE html>

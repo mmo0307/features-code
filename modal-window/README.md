@@ -1,7 +1,5 @@
-# Modal Window
+# Modal Window &React Portal
 
-# React Portal
-------------
 Portals are used in situations where it is necessary for child components to visually break away from the parent container. Typical examples of using portals:
 
 - Modal dialog boxes.

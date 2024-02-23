@@ -1,6 +1,6 @@
 # Each component
 
-replacement for `.map()` function
+замена `.map()` функции
 
 ```
 import Children from 'react';

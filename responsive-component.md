@@ -1,5 +1,7 @@
 
-#Responsive Component
+# Responsive Component
+
+```
 // components/ResponsiveLoader.tsx
 "use client";
 
@@ -54,9 +56,11 @@ function ResponsiveLoader<TDesktop, TMobile>({
 }
 
 export default ResponsiveLoader;
+```
 
+## Used component in page 
 
-##Used component in page 
+```
 // pages/index.tsx
 import ResponsiveLoader from '../components/ResponsiveLoader';
 
@@ -84,4 +88,4 @@ export default function Home() {
     />
   );
 }
-
+```

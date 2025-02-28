@@ -1,5 +1,109 @@
+# React
 
-# Responsive Component
+## Responsive Component 
+
+```
+import React, { useState, useEffect } from 'react';
+
+// Типы для функций динамического импорта
+type AsyncDesktopImport<TDesktop> = () => Promise<{ default: React.ComponentType<TDesktop> }>;
+type AsyncMobileImport<TMobile> = () => Promise<{ default: React.ComponentType<TMobile> }>;
+
+// Интерфейс пропсов для ResponsiveLoader с разделением пропсов для десктопа и мобильной версии
+interface ResponsiveLoaderProps<TDesktop, TMobile> {
+  desktopImport?: AsyncDesktopImport<TDesktop>;
+  mobileImport?: AsyncMobileImport<TMobile>;
+  minWidth?: number;
+  fallback?: React.ReactNode;
+  desktopProps?: TDesktop;
+  mobileProps?: TMobile;
+}
+
+function ResponsiveLoader<TDesktop, TMobile>({
+  desktopImport,
+  mobileImport,
+  minWidth = 1024,
+  fallback = <div>Загрузка...</div>,
+  desktopProps,
+  mobileProps,
+}: ResponsiveLoaderProps<TDesktop, TMobile>): JSX.Element {
+  const [Component, setComponent] = useState<React.ComponentType<any> | null>(null);
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+
+  useEffect(() => {
+    const loadComponent = async () => {
+      if (window.innerWidth >= minWidth && desktopImport) {
+        const { default: DesktopComponent } = await desktopImport();
+        setComponent(() => DesktopComponent);
+        setIsDesktop(true);
+      } else if (mobileImport) {
+        const { default: MobileComponent } = await mobileImport();
+        setComponent(() => MobileComponent);
+        setIsDesktop(false);
+      }
+    };
+
+    loadComponent();
+  }, [desktopImport, mobileImport, minWidth]);
+
+  if (!Component) return <>{fallback}</>;
+
+  return isDesktop ? <Component {...desktopProps} /> : <Component {...mobileProps} />;
+}
+
+export default ResponsiveLoader;
+```
+
+## Used component in page 
+
+```
+import React from 'react';
+import ResponsiveLoader from './ResponsiveLoader';
+
+// Типы пропсов для десктопного и мобильного компонентов
+interface DesktopProps {
+  title: string;
+  content: string;
+  extra: boolean;
+}
+
+interface MobileProps {
+  title: string;
+  content: string;
+  subtitle: string;
+  isActive: boolean;
+  count: number;
+}
+
+function App() {
+  return (
+    <ResponsiveLoader<DesktopProps, MobileProps>
+      desktopImport={() => import('./DesktopComponent')}
+      mobileImport={() => import('./MobileComponent')}
+      minWidth={1024}
+      desktopProps={{
+        title: "Desktop Title",
+        content: "Desktop Content",
+        extra: true,
+      }}
+      mobileProps={{
+        title: "Mobile Title",
+        content: "Mobile Content",
+        subtitle: "Mobile Subtitle",
+        isActive: false,
+        count: 5,
+      }}
+      fallback={<div>Загрузка...</div>}
+    />
+  );
+}
+
+export default App;
+```
+
+# NEXT JS
+
+## Responsive Component 
 
 ```
 // components/ResponsiveLoader.tsx

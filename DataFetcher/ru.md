@@ -1,6 +1,7 @@
 # DataFetcher
 
 ------------
+```
 const DataFetcher = ({ url, render }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const DataFetcher = ({ url, render }) => {
 
     return render({data, loading, error});
 };
-
+```
 ------------
 ```
 <DataFetcher

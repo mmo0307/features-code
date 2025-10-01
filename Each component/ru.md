@@ -5,10 +5,19 @@
 ```
 import Children from 'react';
 
-const arr = [{id: 2, name: 'name2'}, {id: 1, name: 'name1'}]
+type EachProps<T> = {
+  render: (item: T, index: number, itemArr: T[]) => ReactNode;
 
-const Each = ({render, data}) => 
-    Children.toArray(data.map((item, index) => render(item, index)))
+  data: T[];
+};
+
+const Each = <T,>({ render, data }: EachProps<T>) => (
+  <>{Children.toArray(data.map((item, index, itemArr) => render(item, index, itemArr)))}</>
+);
+```
+
+```
+const arr = [{id: 2, name: 'name2'}, {id: 1, name: 'name1'}]
 
 const App = () => 
     <Each data={arr} render={(item, index) => <div key={item.id}>{item.name}</div>} />

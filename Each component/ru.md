@@ -3,7 +3,8 @@
 замена `.map()` функции
 
 ```
-import Children from 'react';
+import type { ReactNode } from 'react';
+import { Children } from 'react';
 
 type EachProps<T> = {
   render: (item: T, index: number, itemArr: T[]) => ReactNode;
